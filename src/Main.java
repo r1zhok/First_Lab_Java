@@ -11,7 +11,5 @@ public class Main {
         for(int i = 0; i< projectors.length; ++i){
             System.out.println(((i+1) + "-" + projectors[i]));
         }
-
-        Projector projector = new Projector();
     }
 }
