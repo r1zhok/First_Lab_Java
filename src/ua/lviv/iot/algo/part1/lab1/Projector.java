@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString
 public class Projector {
 
     private String model;
@@ -34,14 +34,12 @@ public class Projector {
         return instance;
     }
 
+    public static void main(String[] args) {
+        Projector[] projectors = {new Projector(), new Projector("Epson", "1920x1080", 5, "HDMI"), Projector.getInstance(), Projector.getInstance()};
 
-    @Override
-    public String toString() {
-        return "Projector{" +
-                "model='" + model + '\'' +
-                ", resolution='" + resolution + '\'' +
-                ", lampHours=" + lampHours +
-                ", connectedDevice='" + connectedDevice + '\'' +
-                '}';
+        for (Projector projector:projectors){
+            System.out.println(projector);
+        }
     }
+
 }
