@@ -1,5 +1,10 @@
 # Compiled class file
 *.class
+<<<<<<< HEAD
+=======
+out/
+target/
+>>>>>>> 9afd65d (some commit)
 
 # Log file
 *.log
@@ -21,3 +26,15 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
+=======
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+>>>>>>> 9afd65d (some commit)
