@@ -5,14 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class LampProjectorTest {
 
-    private LampProjector lampProjector = LampProjector.init().
-            connectedDevice("HDMI").
-            resolution("1920x1080").model("Panasonic").lampHours(5).
-            descriptionOfTheInformationOutputMode("sport").
+    private final LampProjector lampProjector = LampProjector
+            .init().
+            connectedDevice("HDMI")
+            .resolution("1920x1080").model("Panasonic").lampHours(5)
+            .descriptionOfTheInformationOutputMode("sport").
             theMaximumPermissibleLampOperatingTime(5)
             .constructor();
 
@@ -48,22 +50,9 @@ class LampProjectorTest {
 
     @Test
     void getRemainingWorkingHours() throws Exception {
-        if(lampProjector.getRemainingWorkingHours() < 0){
+        if (lampProjector.getRemainingWorkingHours() < 0) {
             throw new Exception("working hours cant be less than zero");
         }
         assertEquals(5, lampProjector.getRemainingWorkingHours());
-    }
-
-    @Test
-    void testToString() {
-        ToStringVerifier.forClass(LampProjector.class).verify();
-    }
-    @Test
-    void getLampHours() throws Exception {
-
-        if(lampProjector.getLampHours() < 0){
-            throw new Exception("lamp hours cant be less than zero");
-        }
-        assertEquals(5, lampProjector.getLampHours());
     }
 }

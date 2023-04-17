@@ -6,7 +6,9 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 
-@SuperBuilder(builderMethodName = "init", buildMethodName = "constructor", toBuilder = true, setterPrefix = "")
+@SuperBuilder(builderMethodName = "init",
+        buildMethodName = "constructor",
+        toBuilder = true, setterPrefix = "")
 @ToString(callSuper = true)
 @Getter
 @Setter

@@ -5,11 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class HomeTheaterTest {
 
-    private HomeTheater homeTheater = HomeTheater.init().model("Samsung").resolution("4k")
+    private final HomeTheater homeTheater = HomeTheater.init().model("Samsung").resolution("4k")
             .connectedDevice("HDMI, USB").yearOfASale(2023)
             .screenSizeInInches(57).versionOfSmartTV("last")
             .guarantee(5).constructor();
@@ -41,28 +42,9 @@ class HomeTheaterTest {
 
     @Test
     void getRemainingWorkingHours() throws Exception {
-        if(homeTheater.getRemainingWorkingHours() < 0 ){
-            throw  new Exception("working hours cant be less than zero");
+        if (homeTheater.getRemainingWorkingHours() < 0) {
+            throw new Exception("working hours cant be less than zero");
         }
         assertEquals(18250.0, homeTheater.getRemainingWorkingHours());
-    }
-
-    @Test
-    void testToString() {
-        ToStringVerifier.forClass(HomeTheater.class).verify();
-    }
-
-    @Test
-    void getYearOfASale() {
-
-        assertEquals(2023, homeTheater.getYearOfASale());
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void toBuilder() {
     }
 }

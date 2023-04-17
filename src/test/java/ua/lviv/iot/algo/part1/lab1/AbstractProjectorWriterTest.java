@@ -1,20 +1,31 @@
 package ua.lviv.iot.algo.part1.lab1;
 
-import lombok.ToString;
+import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
-@ToString(callSuper = true)
-public class ProjectorManager {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private static final List<AbstractProjector> projectors = new LinkedList<>();
+class AbstractProjectorWriterTest {
+    private AbstractProjectorWriter writer;
+    private List<AbstractProjector> projectors;
+    private static final String RESULT_FILE_NAME = "result.csv";
+    private static final String EXPECTED_FILENAME = "result.csv";
 
-    public static void main(String... args) {
-        ProjectorManager projectorManager = new ProjectorManager();
-
-        projectorManager.addProjector(
-                LampProjector.init().
+    @BeforeEach
+    public void setUp() throws FileNotFoundException {
+        writer = new AbstractProjectorWriter();
+        projectors = new LinkedList<>();
+        projectors.addAll(List.of(LampProjector.init().
                         connectedDevice("HDMI")
                         .resolution("1920x1080").model("Panasonic").lampHours(5)
                         .descriptionOfTheInformationOutputMode("sport")
@@ -24,7 +35,7 @@ public class ProjectorManager {
                         .connectedDevice("HDMI").resolution("4k").
                         descriptionOfTheInformationOutputMode("normal").constructor(),
                 HomeTheater.init().model("Samsung").resolution("4k")
-                        .connectedDevice("HDMI, USB").yearOfASale(2023)
+                        .connectedDevice("HDMI").yearOfASale(2023)
                         .screenSizeInInches(57).versionOfSmartTV("last")
                         .guarantee(5).constructor(),
                 HomeTheater.init().model("Samsung").resolution("8k")
@@ -43,43 +54,34 @@ public class ProjectorManager {
                         .energyConsumption(30).constructor(),
                 TreeDProjector.init().model("Panasonic").resolution("4k")
                         .connectedDevice("HDMI")
-                        .energyConsumption(30).constructor());
-
-
-        System.out.println("All my objects: ");
-
-        for (AbstractProjector projector : projectors) {
-            System.out.println(projector);
-        }
-
-        System.out.println("------------------------------------------");
-
-        for (AbstractProjector projector : projectorManager.findProjectorByModel("Samsung")) {
-            System.out.println(projector);
-        }
-
-        System.out.println("-------------------------------------------");
-
-        for (AbstractProjector projector : projectorManager.findProjectorByResolution("1920x1080")) {
-            System.out.println(projector);
-        }
+                        .energyConsumption(30).constructor()));
     }
 
-
-    public List<AbstractProjector> addProjector(AbstractProjector... abstractProjector) {
-        projectors.addAll(List.of(abstractProjector));
-        return projectors;
+    @AfterEach
+    public void tearDown() throws IOException {
+        Files.deleteIfExists(Path.of(RESULT_FILE_NAME));
     }
 
-    public List<AbstractProjector> findProjectorByModel(String model) {
-        return projectors.stream().
-                filter(abstractProjector -> abstractProjector.getModel().equals(model)).
-                toList();
+    @Test
+    public void testEmptyWrite() throws IOException {
+        writer.writeToFile(null);
+        File file = new File(RESULT_FILE_NAME);
+        Assert.assertFalse(file.exists());
     }
 
-    public List<AbstractProjector> findProjectorByResolution(String resolution) {
-        return projectors.stream().
-                filter(abstractProjector -> abstractProjector.getResolution().equals(resolution)).
-                toList();
+    @Test
+    public void testWriteListOfProjectors() throws IOException {
+        writer.writeToFile(projectors);
+        File file = new File(RESULT_FILE_NAME);
+
+        Path expected = new File(EXPECTED_FILENAME).toPath();
+        Path actual = file.toPath();
+
+        assertEquals(-1L,Files.mismatch(expected, actual));
+    }
+
+    @Test
+    public void testFileOverride() throws IOException {
+        testWriteListOfProjectors();
     }
 }

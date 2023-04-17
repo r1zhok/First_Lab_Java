@@ -1,0 +1,9 @@
+model,resolution,connectedDevice,lampHours,descriptionOfTheInformationOutputMode,theMaximumPermissibleLampOperatingTime,yearOfASale,screenSizeInInches,versionOfSmartTV,guarantee,WORKING_HOURS_PER_YEAR,colorOfSurface,isHasMagniteSurface,thePossibilityOfRecordingTheScreen,energyConsumption
+Panasonic,1920x1080,HDMI,5.0,sport,5.0,no data,no data,no data,no data,no data,no data,no data,no data,no data
+Epson,4k,HDMI,5.0,normal,0.0,no data,no data,no data,no data,no data,no data,no data,no data,no data
+Samsung,4k,HDMI,no data,no data,no data,2023.0,57.0,last,5.0,3650.0,no data,no data,no data,no data
+Samsung,8k,HDMI,no data,no data,no data,2021.0,77.0,last,0.0,3650.0,no data,no data,no data,no data
+Prestigio,1920x1080,HDMI,no data,no data,no data,no data,no data,no data,5.0,3650.0,black,true,false,no data
+Prestigio,1920x1080,HDMI,no data,no data,no data,no data,no data,no data,5.0,3650.0,black,false,false,no data
+Panasonic,4k,HDMI,no data,no data,no data,no data,no data,no data,4.0,3650.0,no data,no data,no data,30.0
+Panasonic,4k,HDMI,no data,no data,no data,no data,no data,no data,0.0,3650.0,no data,no data,no data,30.0
