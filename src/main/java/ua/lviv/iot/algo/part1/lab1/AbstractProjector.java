@@ -71,32 +71,4 @@ public abstract class AbstractProjector {
         }
         return null;
     }
-
-    List<Map<String, LinkedList<AbstractProjector>>> someCodeForReadingDataFromFile(List<AbstractProjector> projectors) {
-        Class<?> clazz = this.getClass().getSuperclass();
-        Field[] fields;
-        var rowsList = new LinkedList<Map<String, LinkedList<AbstractProjector>>>();
-        var columnNames = new HashSet<String>();
-
-        try {
-            fields = clazz.getDeclaredFields();
-            for (var field:fields){
-                field.setAccessible(true);
-
-                columnNames.add(field.getName());
-            }
-            clazz = this.getClass();
-        }catch (SecurityException e) {
-            e.printStackTrace();
-        }
-
-        /*Map<String, String> rowMap = new HashMap<String, String>();
-        for(int columnIndex = 0; columnIndex < columnNames.size(); columnIndex++) {
-            rowMap.put(columnNames[columnIndex], rows[columnIndex]);
-        }
-        rowsList.add(rowMap);
-        // repeat this until you reach EOF*/
-        return rowsList;
-    }
-
 }

@@ -1,9 +1,12 @@
-model,resolution,connectedDevice,lampHours,descriptionOfTheInformationOutputMode,theMaximumPermissibleLampOperatingTime,yearOfASale,screenSizeInInches,versionOfSmartTV,guarantee,WORKING_HOURS_PER_YEAR,colorOfSurface,isHasMagniteSurface,thePossibilityOfRecordingTheScreen,energyConsumption
-Panasonic,1920x1080,HDMI,5.0,sport,5.0,no data,no data,no data,no data,no data,no data,no data,no data,no data
-Epson,4k,HDMI,5.0,normal,0.0,no data,no data,no data,no data,no data,no data,no data,no data,no data
-Samsung,4k,HDMI,no data,no data,no data,2023.0,57.0,last,5.0,3650.0,no data,no data,no data,no data
-Samsung,8k,HDMI,no data,no data,no data,2021.0,77.0,last,0.0,3650.0,no data,no data,no data,no data
-Prestigio,1920x1080,HDMI,no data,no data,no data,no data,no data,no data,5.0,3650.0,black,true,false,no data
-Prestigio,1920x1080,HDMI,no data,no data,no data,no data,no data,no data,5.0,3650.0,black,false,false,no data
-Panasonic,4k,HDMI,no data,no data,no data,no data,no data,no data,4.0,3650.0,no data,no data,no data,30.0
-Panasonic,4k,HDMI,no data,no data,no data,no data,no data,no data,0.0,3650.0,no data,no data,no data,30.0
+model,resolution,connectedDevice,lampHours,descriptionOfTheInformationOutputMode,theMaximumPermissibleLampOperatingTime
+Panasonic,1920x1080,HDMI,5.0,sport,5.0
+Epson,4k,HDMI,5.0,normal,0.0
+model,resolution,connectedDevice,yearOfASale,screenSizeInInches,versionOfSmartTV,guarantee,WORKING_HOURS_PER_YEAR
+Samsung,4k,HDMI,2023.0,57.0,last,5.0,3650.0
+Samsung,8k,HDMI,2021.0,77.0,last,0.0,3650.0
+model,resolution,connectedDevice,colorOfSurface,isHasMagniteSurface,thePossibilityOfRecordingTheScreen,guarantee,WORKING_HOURS_PER_YEAR
+Prestigio,1920x1080,HDMI,black,true,false,5.0,3650.0
+Prestigio,1920x1080,HDMI,black,false,false,5.0,3650.0
+model,resolution,connectedDevice,guarantee,WORKING_HOURS_PER_YEAR,energyConsumption
+Panasonic,4k,HDMI,4.0,3650.0,30.0
+Panasonic,4k,HDMI,0.0,3650.0,30.0

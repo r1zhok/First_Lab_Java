@@ -5,9 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.lang.reflect.Field;
-
-
 @ToString(callSuper = true)
 @SuperBuilder(builderMethodName = "init",
         buildMethodName = "constructor",

@@ -12,7 +12,8 @@ class ProjectorManagerTest {
     @BeforeEach
     public void setUp() {
         projectorManager = new ProjectorManager();
-        projectorManager.addProjector(LampProjector.init()
+        projectorManager.addProjector(
+                LampProjector.init()
                         .connectedDevice("HDMI")
                         .resolution("1920x1080").model("Panasonic").lampHours(5)
                         .descriptionOfTheInformationOutputMode("sport")

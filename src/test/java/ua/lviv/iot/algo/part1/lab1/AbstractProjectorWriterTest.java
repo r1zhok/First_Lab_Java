@@ -1,12 +1,9 @@
 package ua.lviv.iot.algo.part1.lab1;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,13 +16,14 @@ class AbstractProjectorWriterTest {
     private AbstractProjectorWriter writer;
     private List<AbstractProjector> projectors;
     private static final String RESULT_FILE_NAME = "result.csv";
-    private static final String EXPECTED_FILENAME = "result.csv";
+    private static final String EXPECTED_FILENAME = "expected.csv";
 
     @BeforeEach
-    public void setUp() throws FileNotFoundException {
+    public void setUp() {
         writer = new AbstractProjectorWriter();
         projectors = new LinkedList<>();
-        projectors.addAll(List.of(LampProjector.init().
+        projectors.addAll(List.of(
+                LampProjector.init().
                         connectedDevice("HDMI")
                         .resolution("1920x1080").model("Panasonic").lampHours(5)
                         .descriptionOfTheInformationOutputMode("sport")
@@ -63,10 +61,10 @@ class AbstractProjectorWriterTest {
     }
 
     @Test
-    public void testEmptyWrite() throws IOException {
+    public void testEmptyWrite() {
         writer.writeToFile(null);
         File file = new File(RESULT_FILE_NAME);
-        Assert.assertFalse(file.exists());
+        assertFalse(file.exists());
     }
 
     @Test
@@ -75,7 +73,7 @@ class AbstractProjectorWriterTest {
         File file = new File(RESULT_FILE_NAME);
 
         Path expected = new File(EXPECTED_FILENAME).toPath();
-        Path actual = file.toPath();
+        Path actual = new File(RESULT_FILE_NAME).toPath();
 
         assertEquals(-1L,Files.mismatch(expected, actual));
     }
