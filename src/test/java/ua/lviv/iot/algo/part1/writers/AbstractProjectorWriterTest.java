@@ -1,48 +1,32 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.writers;
 
-import java.io.*;
-import java.util.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.modules.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.List;
 
-public class AbstractProjectorWriter {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public String writeToFile (List<AbstractProjector> projectors) {
-        if (projectors == null || projectors.isEmpty()) {
-            return null;
-        }
-        String defaultFileName = "result.csv";
-        List<String> nameOfColons = new LinkedList<>();          //Collections.newSetFromMap(new ConcurrentHashMap<>())
+class AbstractProjectorWriterTest {
+    private AbstractProjectorWriter writer;
+    private List<AbstractProjector> projectors;
+    private static final String RESULT_FILE_NAME = "result.csv";
+    private static final String EXPECTED_FILENAME = "expected.csv";
 
-        try (FileWriter writer = new FileWriter(defaultFileName)) {
-            for (var projector : projectors) {
-                if (nameOfColons.isEmpty()) {
-                    nameOfColons.add(projector.getHeadersSmarter());
-                    writer.write(projector.getHeadersSmarter());
-                    writer.write("\r\n");
-                    writer.write(projector.toCSVSmarter());
-                    writer.write("\r\n");
-                } else if (nameOfColons.contains(projector.getHeadersSmarter())) {
-                    writer.write(projector.toCSVSmarter());
-                    writer.write("\r\n");
-                } else {
-                    nameOfColons.add(projector.getHeadersSmarter());
-                    writer.write(projector.getHeadersSmarter());
-                    writer.write("\r\n");
-                    writer.write(projector.toCSVSmarter());
-                    writer.write("\r\n");
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return defaultFileName;
-    }
-
-
-    public static void main(String[] args) {
-        AbstractProjectorWriter writer = new AbstractProjectorWriter();
-
-        writer.writeToFile(List.of(LampProjector.init().
+    @BeforeEach
+    public void setUp() {
+        writer = new AbstractProjectorWriter();
+        projectors = new LinkedList<>();
+        projectors.addAll(List.of(
+                LampProjector.init().
                         connectedDevice("HDMI")
                         .resolution("1920x1080").model("Panasonic").lampHours(5)
                         .descriptionOfTheInformationOutputMode("sport")
@@ -72,6 +56,36 @@ public class AbstractProjectorWriter {
                 TreeDProjector.init().model("Panasonic").resolution("4k")
                         .connectedDevice("HDMI")
                         .energyConsumption(30).constructor()));
+    }
 
+    @AfterEach
+    public void tearDown() throws IOException {
+        Files.deleteIfExists(Path.of(RESULT_FILE_NAME));
+    }
+
+    @Test
+    public void testEmptyWrite() {
+        writer.writeToFile(null);
+        File file = new File(RESULT_FILE_NAME);
+        assertFalse(file.exists());
+    }
+
+    @Test
+    public void testWriteListOfProjectors() throws IOException {
+        writer.writeToFile(projectors);
+        File file = new File(RESULT_FILE_NAME);
+
+        Path expected = new File(EXPECTED_FILENAME).toPath();
+        Path actual = file.toPath();
+
+        assertEquals(-1L, Files.mismatch(expected, actual));
+    }
+
+    @Test
+    public void testFileOverride() throws IOException {
+        try (FileWriter file = new FileWriter(RESULT_FILE_NAME)) {
+            file.write("1111111");
+        }
+        testWriteListOfProjectors();
     }
 }

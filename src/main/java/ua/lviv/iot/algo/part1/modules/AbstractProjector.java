@@ -1,13 +1,11 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import java.lang.reflect.Field;
 import lombok.experimental.SuperBuilder;
 
-import java.lang.reflect.Field;
-import java.util.*;
 
 @SuppressWarnings("checkstyle:MissingJavadocType")
 @Getter
@@ -32,6 +30,7 @@ public abstract class AbstractProjector {
         Class<?> clazz = this.getClass().getSuperclass();
         Field[] fields;
         String result = "";
+        String newResult;
         try {
             for (int i = 0; i < 2; i++) {
                 fields = clazz.getDeclaredFields();
@@ -42,7 +41,7 @@ public abstract class AbstractProjector {
                 }
                 clazz = this.getClass();
             }
-            String newResult = result.substring(0,result.length()-1);
+            newResult = result.substring(0, result.length() - 1);
             return newResult;
         } catch (SecurityException e) {
             e.printStackTrace();
@@ -54,19 +53,20 @@ public abstract class AbstractProjector {
         Class<?> clazz = this.getClass().getSuperclass();
         Field[] fields;
         String result = "";
+        String newResult;
         try {
-            for(int i=0; i<2; i++){
+            for (int i = 0; i < 2; i++) {
                 fields = clazz.getDeclaredFields();
-                for(var field:fields){
+                for (var field : fields) {
                     field.setAccessible(true);
                     result += field.get(this);
                     result += ",";
                 }
                 clazz = this.getClass();
             }
-            String newResult = result.substring(0,result.length()-1);
+            newResult = result.substring(0, result.length() - 1);
             return newResult;
-        }catch (SecurityException | IllegalAccessException e){
+        } catch (SecurityException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;

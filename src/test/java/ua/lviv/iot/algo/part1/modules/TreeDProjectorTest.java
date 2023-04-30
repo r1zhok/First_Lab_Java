@@ -1,10 +1,7 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
-import com.jparams.verifier.tostring.ToStringVerifier;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -12,10 +9,10 @@ class TreeDProjectorTest {
 
     private final TreeDProjector treeDProjector =
             TreeDProjector
-            .init()
-            .model("Panasonic").resolution("4k")
-            .connectedDevice("bxx").guarantee(4)
-            .energyConsumption(30).constructor();
+                    .init()
+                    .model("Panasonic").resolution("4k")
+                    .connectedDevice("bxx").guarantee(4)
+                    .energyConsumption(30).constructor();
 
 
     @Test
