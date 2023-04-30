@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,13 +6,18 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @ToString(callSuper = true)
-@SuperBuilder(builderMethodName = "init", buildMethodName = "constructor", toBuilder = true, setterPrefix = "")
+@SuperBuilder(builderMethodName = "init",
+        buildMethodName = "constructor",
+        toBuilder = true, setterPrefix = "")
 @Getter
 @Setter
-public class TreeDProjector extends AbstractProjector {
+public class HomeTheater extends AbstractProjector {
+
+    private double yearOfASale;
+    private double screenSizeInInches;
+    private String versionOfSmartTV;
     private double guarantee;
     private static final double WORKING_HOURS_PER_YEAR = 3650;
-    private double energyConsumption;
 
     @Override
     public String addInputDevice(String device) {

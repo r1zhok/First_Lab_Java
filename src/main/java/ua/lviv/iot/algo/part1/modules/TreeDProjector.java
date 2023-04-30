@@ -1,21 +1,20 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-
-@SuperBuilder(builderMethodName = "init", buildMethodName = "constructor", toBuilder = true, setterPrefix = "")
 @ToString(callSuper = true)
+@SuperBuilder(builderMethodName = "init",
+        buildMethodName = "constructor",
+        toBuilder = true, setterPrefix = "")
 @Getter
 @Setter
-public class MultiBoard extends AbstractProjector {
-    private String colorOfSurface;
-    private boolean isHasMagniteSurface;
-    private boolean thePossibilityOfRecordingTheScreen;
+public class TreeDProjector extends AbstractProjector {
     private double guarantee;
     private static final double WORKING_HOURS_PER_YEAR = 3650;
+    private double energyConsumption;
 
     @Override
     public String addInputDevice(String device) {

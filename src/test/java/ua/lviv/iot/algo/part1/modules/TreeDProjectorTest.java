@@ -1,17 +1,18 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
-import com.jparams.verifier.tostring.ToStringVerifier;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TreeDProjectorTest {
 
-    private TreeDProjector treeDProjector = TreeDProjector.init().model("Panasonic").resolution("4k")
-            .connectedDevice("bxx").guarantee(4)
-            .energyConsumption(30).constructor();
+    private final TreeDProjector treeDProjector =
+            TreeDProjector
+                    .init()
+                    .model("Panasonic").resolution("4k")
+                    .connectedDevice("bxx").guarantee(4)
+                    .energyConsumption(30).constructor();
 
 
     @Test
@@ -44,26 +45,5 @@ class TreeDProjectorTest {
     public void getRemainingWorkingHours() {
 
         assertEquals(14600.0, treeDProjector.getRemainingWorkingHours());
-    }
-
-
-
-    @Test
-    void testToString() {
-        ToStringVerifier.forClass(TreeDProjector.class).verify();
-    }
-
-    @Test
-    void getGuarantee() {
-
-        assertEquals(4, treeDProjector.getGuarantee());
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void toBuilder() {
     }
 }

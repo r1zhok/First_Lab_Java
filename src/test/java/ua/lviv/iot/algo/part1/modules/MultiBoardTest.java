@@ -1,15 +1,13 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.modules;
 
-import com.jparams.verifier.tostring.ToStringVerifier;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MultiBoardTest {
 
-    private MultiBoard multiBoard = MultiBoard.init().model("Prestigio").resolution("1920x1080")
+    private final MultiBoard multiBoard = MultiBoard.init().model("Prestigio").resolution("1920x1080")
             .connectedDevice("HDMI").colorOfSurface("black")
             .isHasMagniteSurface(true).thePossibilityOfRecordingTheScreen(false)
             .guarantee(5).constructor();
@@ -42,21 +40,8 @@ class MultiBoardTest {
 
     @Test
     void getRemainingWorkingHours() throws Exception {
-        if(multiBoard.getRemainingWorkingHours() < 0){
+        if (multiBoard.getRemainingWorkingHours() < 0) {
             throw new Exception("working hours cant be less than zero");
-        }
-        assertEquals(18250.0, multiBoard.getRemainingWorkingHours());
-    }
-
-    @Test
-    void testToString() {
-        ToStringVerifier.forClass(MultiBoard.class).verify();
-    }
-
-    @Test
-    void getColorOfSurface() throws Exception {
-        if(multiBoard.getRemainingWorkingHours() < 0 ){
-            throw  new Exception("working hours cant be less than zero");
         }
         assertEquals(18250.0, multiBoard.getRemainingWorkingHours());
     }

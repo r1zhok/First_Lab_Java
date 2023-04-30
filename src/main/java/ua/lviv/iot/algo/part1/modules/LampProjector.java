@@ -1,14 +1,14 @@
-package ua.lviv.iot.algo.part1.lab1;
-
+package ua.lviv.iot.algo.part1.modules;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-
 @ToString(callSuper = true)
-@SuperBuilder(builderMethodName = "init", buildMethodName = "constructor", toBuilder = true, setterPrefix = "")
+@SuperBuilder(builderMethodName = "init",
+        buildMethodName = "constructor",
+        toBuilder = true, setterPrefix = "")
 @Getter
 @Setter
 public class LampProjector extends AbstractProjector {
